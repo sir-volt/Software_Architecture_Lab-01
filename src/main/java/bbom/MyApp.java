@@ -50,7 +50,7 @@ public class MyApp extends JFrame  implements ActionListener {
 		System.out.println("[Output] " + msg);
 	}
 
-    static public void main(String[] args) throws Exception {			  
+    static public void main(String[] args) throws Exception {
     	MyApp app = new MyApp();
 		SwingUtilities.invokeAndWait(() -> {
 			app.setVisible(true);
