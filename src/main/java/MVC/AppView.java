@@ -7,37 +7,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AppView extends JFrame  implements ActionListener {
+public class AppView extends JFrame implements Observer{
 
-    private AppController controller;
-
-    public AppView(AppController controller) {
-        super("My BBoM App");
-
-        this.controller = controller;
-
-        setSize(300, 70);
-        setResizable(false);
-
-        JButton button = new JButton("Update");
-        button.addActionListener(this);
-
-        //JLabel label = new JLabel();
-
-        JPanel panel = new JPanel();
-        panel.add(button);
-
-        setLayout(new BorderLayout());
-        add(panel,BorderLayout.NORTH);
-
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent ev) {
-                System.exit(-1);
-            }
-        });
+    JLabel label = new JLabel("Current State: " + 0);
+    public AppView() {
     }
 
-    public void actionPerformed(ActionEvent ev) {
-        this.controller.updateModel();
+    @Override
+    public void updateView(int state) {
+        this.label.setText("Current State: " + state);
+        super.update(this.getGraphics());
+    }
+
+    @Override
+    public Object getView() {
+        return this.label;
     }
 }
